@@ -321,7 +321,7 @@ declare namespace jest {
          *
          * @param actual The value to apply matchers against.
          */
-        (actual: any): Matchers<void>;
+        <T = any>(actual: T): Matchers<T>;
         anything(): any;
         /**
          * Matches anything that was created with the given constructor.
@@ -542,6 +542,10 @@ declare namespace jest {
         /**
          * This ensures that a value matches the most recent snapshot.
          * Check out [the Snapshot Testing guide](http://facebook.github.io/jest/docs/snapshot-testing.html) for more information.
+         */
+        toMatchSnapshot<T extends {[P in keyof R]: Expect['any']}>(propertyMatchers: Partial<T>, snapshotName?: string): R;
+        /**
+         * @deprecated
          */
         toMatchSnapshot(snapshotName?: string): R;
         /**

@@ -544,6 +544,11 @@ describe("", () => {
 
         expect({}).toMatchSnapshot();
         expect({}).toMatchSnapshot("snapshotName");
+        expect({
+            one: 1,
+            two: '2',
+            date: new Date()
+        }).toMatchSnapshot({one: expect.any(Number), two: expect.any(String) });
 
         expect(jest.fn()).toReturn();
 
